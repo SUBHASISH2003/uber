@@ -29,4 +29,9 @@ userController.loginUser
 // create profile route
 router.get('/profile',authMiddleware.authUser, userController.getUserProfile)
 
+//create logout route
+router.get('/logout',authMiddleware.authUser, userController.logoutUser)
+
+
+
 module.exports = router; 

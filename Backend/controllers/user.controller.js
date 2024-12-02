@@ -1,7 +1,7 @@
 const userModel = require('../models/user.model');
 const userService = require('../services/user.service');
 const {validationResult} = require('express-validator');
-
+const blacklistedTokenModel = require('../models/blacklistToken.model');
 
 
 //It handles HTTP requests for registering a user.
@@ -65,9 +65,20 @@ module.exports.loginUser = async (req,res,next) => {
 
 
 
-
+//This function is meant to handle requests for fetching the profile details of the currently authenticated user.
 module.exports.getUserProfile = async (req,res,next) => {
 
     res.status(200).json(req.user);
+
+}
+
+
+module.exports.logoutUser = async (req,res,next) => {
+    res.clearCookie('token');
+    const token = req.cookies.token || req.headers.authorization.split(' ')[1];
+
+    await blacklistedTokenModel.create({token});
+    
+    res.status(200).json({message: 'Logged out'});
 
 }
