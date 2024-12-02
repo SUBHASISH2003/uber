@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();//create router
 const {body} = require("express-validator") //require express validator
 const userController = require('../controllers/user.controller');//require user controller
+const authMiddleware = require('../middlewares/auth.middleware');
 
 
 
@@ -24,5 +25,8 @@ router.post('/login',[
 ],
 userController.loginUser
 )
+
+// create profile route
+router.get('/profile',authMiddleware.authUser, userController.getUserProfile)
 
 module.exports = router; 
