@@ -14,7 +14,8 @@ const CaptainProtectWrapper = ({
     const navigate = useNavigate()
     const {captain, setCaptain} = useContext(CaptainDataContext)
     
-    const {isLoading, setIsLoading} = useState(true)
+    //const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
       if(!token) {
@@ -29,7 +30,7 @@ const CaptainProtectWrapper = ({
     }).then(response => {
         if (response.status === 200) { //Check Response Status
             setCaptain(response.data.captain)
-            isLoading(false)
+            setIsLoading(false)
             
         }
     })
