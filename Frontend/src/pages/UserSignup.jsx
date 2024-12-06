@@ -14,7 +14,7 @@ const UserSignup = () => {
 
   const navigate = useNavigate()
 
-  const {user, setUser} = useContext(UserDataContext) 
+  const {user, setUser} = React.useContext(UserDataContext) 
 
   const submitHandler = async (e)=>{
     e.preventDefault();
