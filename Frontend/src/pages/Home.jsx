@@ -57,7 +57,9 @@ const Home = () => {
   return (
     <div className=' h-screen overflow-hidden relative'>
       <img className='w-20 absolute mb-10' src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="" />
-      <div className=' h-screen w-screen'>
+      <div onClick={()=>{
+        setVehiclePanel(false)
+      }} className=' h-screen w-screen'>
         <img className=' h-full w-full object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTABLUH3RR9WY4ogN9jIsbV0QTaQWXDvEWW1A&s" alt="" />
       </div>
       <div className='flex flex-col justify-end h-screen absolute top-0 w-full '>
@@ -106,7 +108,9 @@ const Home = () => {
        </div>
 
       </div>
-      <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-8'>
+      <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-10'>
+      <h5 className=' absolute p-1 w-[93%] text-center  top-0'><i className="ri-arrow-down-double-line text-3xl text-gray-400"></i></h5>
+       <h3 className=' text-2xl font-semibold mb-5'>Choose a Vehicle</h3>
         <div className=' flex border-2 rounded-xl active:border-black mb-2 w-full p-3  items-center justify-between'>
           <img className=' h-12' src="https://purepng.com/public/uploads/large/purepng.com-honda-carshondacarshonda-manufacturingvehicle-honda-1701527486181k3is7.png" alt="" />
           <div className=' ml-2 w-1/2'>
