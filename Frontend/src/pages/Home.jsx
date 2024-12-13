@@ -199,22 +199,41 @@ const Home = () => {
 
     return (
         <div className='h-screen relative overflow-hidden'>
-            <img className='w-16 absolute left-5 top-5' src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="" />
+            <img 
+             className='w-16 absolute left-5 top-5' 
+             src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="" 
+            />
             <div className='h-screen w-screen'>
                 <LiveTracking />
             </div>
+
+            {/* bottom panel */}
+
+
             <div className=' flex flex-col justify-end h-screen absolute top-0 w-full'>
-                <div className='h-[30%] p-6 bg-white relative'>
+                <div className='h-[30%] p-6 bg-white relative sm:h-[40%]'>
+
+
+                    {/* Close button */}
                     <h5 ref={panelCloseRef} onClick={() => {
                         setPanelOpen(false)
-                    }} className='absolute opacity-0 right-6 top-6 text-2xl'>
+                    }} className='absolute opacity-0 right-6 top-6 text-2xl cursor-pointer sm:opacity-100'>
+                        
                         <i className="ri-arrow-down-wide-line"></i>
                     </h5>
-                    <h4 className='text-2xl font-semibold'>Find a trip</h4>
+
+                    {/* Panel Title */}
+                    <h4 className='text-2xl font-semibold sm:text-lg'>Find a trip</h4>
+
+                     {/* Form */}
                     <form className='relative py-3' onSubmit={(e) => {
                         submitHandler(e)
                     }}>
-                        <div className="line absolute h-16 w-1 top-[50%] -translate-y-1/2 left-5 bg-gray-700 rounded-full"></div>
+
+                         {/* Vertical Line */}
+                        <div className="line absolute h-16 w-1 top-[50%] -translate-y-1/2 left-5 bg-gray-700 rounded-full sm:h-12"></div>
+
+                         {/* Pickup Input */}
                         <input
                             onClick={() => {
                                 setPanelOpen(true)
@@ -222,10 +241,12 @@ const Home = () => {
                             }}
                             value={pickup}
                             onChange={handlePickupChange}
-                            className='bg-[#eee] px-12 py-2 text-lg rounded-lg w-full'
+                            className='bg-[#eee] px-12 py-2 text-lg rounded-lg w-full sm:px-8 sm:text-sm'
                             type="text"
                             placeholder='Add a pick-up location'
                         />
+
+                         {/* Destination Input */}
                         <input
                             onClick={() => {
                                 setPanelOpen(true)
@@ -233,16 +254,20 @@ const Home = () => {
                             }}
                             value={destination}
                             onChange={handleDestinationChange}
-                            className='bg-[#eee] px-12 py-2 text-lg rounded-lg w-full  mt-3'
+                            className='bg-[#eee] px-12 py-2 text-lg rounded-lg w-full  mt-3 sm:px-8 sm:text-sm'
                             type="text"
                             placeholder='Enter your destination' />
                     </form>
+
+                     {/* Button */}
                     <button
                         onClick={findTrip}
-                        className='bg-black text-white px-4 py-2 rounded-lg mt-3 w-full'>
+                        className='bg-black text-white px-4 py-2 rounded-lg mt-3 w-full sm:py-1 sm:text-sm'>
                         Find Trip
                     </button>
                 </div>
+
+                
                 <div ref={panelRef} className='bg-white h-0'>
                     <LocationSearchPanel
                         suggestions={activeField === 'pickup' ? pickupSuggestions : destinationSuggestions}
