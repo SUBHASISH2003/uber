@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react';
+import { Link } from 'react-router-dom'
 import gsap from 'gsap';
 import axios from 'axios';
 import 'remixicon/fonts/remixicon.css'
@@ -199,6 +200,11 @@ const Home = () => {
 
     return (
         <div className='h-screen relative overflow-hidden'>
+            <div className='fixed p-6 top-0 z-10 flex items-center justify-between w-screen'>
+                <Link to='/user/logout' className=' h-10 w-10 bg-red-500  flex items-center justify-center rounded-full'>
+                    <i className="text-lg font-medium ri-logout-box-r-line"></i>
+                </Link>
+            </div>
            
             <div className='h-screen w-screen '>
                 <LiveTracking />
