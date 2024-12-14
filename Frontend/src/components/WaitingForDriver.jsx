@@ -12,7 +12,7 @@ const WaitingForDriver = (props) => {
         <img className='h-12' src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg" alt="" />
         <div className='text-right'>
           <h2 className='text-lg font-medium pb-3 capitalize'>{props.ride?.captain.fullname.firstname}</h2>
-          <h4 className='text-sm font-semibold -mt-1 -mb-1 text-gray-600'>{props.ride?.captain.vehicle.plate}</h4>
+          <h4 className='text-sm font-semibold -mt-1 -mb-1 text-gray-600 '>{props.ride?.captain.vehicle.plate}</h4>
           <h1 className='text-lg pt-3 font-semibold'> OTP :  {props.ride?.otp} </h1>
         </div>
       </div>

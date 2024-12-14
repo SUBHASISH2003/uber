@@ -102,11 +102,11 @@ const CaptainHome = () => {
 
     return (
         <div className='h-screen'>
-            {/* <div className='fixed p-6 top-0 flex items-center justify-between w-screen'>
-                <Link to='/captain-home' className=' h-10 w-10 bg-white flex items-center justify-center rounded-full'>
+            <div className='fixed p-6 top-0 z-10 flex items-center justify-between w-screen'>
+                <Link to='/captain/logout' className=' h-10 w-10 bg-red-500  flex items-center justify-center rounded-full'>
                     <i className="text-lg font-medium ri-logout-box-r-line"></i>
                 </Link>
-            </div> */}
+            </div>
             <div className='h-4/5'>
             <LiveTracking/>
 

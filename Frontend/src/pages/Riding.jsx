@@ -26,7 +26,7 @@ const Riding = () => {
 
             </div>
             <div className='h-1/2 p-4'>
-            <h3 className='text-2xl font-semibold mb-5'>Wow .. Finally Reached <span><i className="ri-roadster-fill"></i></span></h3>
+            <h3 className='text-2xl font-semibold mb-5'>Lets Go...!!<span><i className="ri-roadster-fill"></i></span></h3>
 
                 <div className='flex items-center justify-between'>
                     <img className='h-12' src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg" alt="" />
