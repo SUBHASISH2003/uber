@@ -6,6 +6,7 @@ const WaitingForDriver = (props) => {
       <h5 className='p-1 text-center w-[93%] absolute top-0' onClick={() => {
         props.waitingForDriver(false)
       }}><i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i></h5>
+       <h3 className='text-2xl font-semibold mb-5'>Waiting for a Driver <span><i className="ri-roadster-fill"></i></span></h3>
 
       <div className='flex items-center justify-between'>
         <img className='h-12' src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg" alt="" />
