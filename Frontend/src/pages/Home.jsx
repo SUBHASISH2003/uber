@@ -18,12 +18,12 @@ const Home = () => {
     const [ pickup, setPickup ] = useState('')
     const [ destination, setDestination ] = useState('')
     const [ panelOpen, setPanelOpen ] = useState(false)
+    const panelRef = useRef(null)
+    const panelCloseRef = useRef(null)
     const vehiclePanelRef = useRef(null)
     const confirmRidePanelRef = useRef(null)
     const vehicleFoundRef = useRef(null)
     const waitingForDriverRef = useRef(null)
-    const panelRef = useRef(null)
-    const panelCloseRef = useRef(null)
     const [ vehiclePanel, setVehiclePanel ] = useState(false)
     const [ confirmRidePanel, setConfirmRidePanel ] = useState(false)
     const [ vehicleFound, setVehicleFound ] = useState(false)
@@ -200,24 +200,24 @@ const Home = () => {
     return (
         <div className='h-screen relative overflow-hidden'>
             <img 
-             className='w-16 absolute left-5 top-5' 
+             className='w-16 absolute left-5 top-5 ' 
              src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="" 
             />
-            <div className='h-screen w-screen'>
+            <div className='h-screen w-screen '>
                 <LiveTracking />
             </div>
 
             {/* bottom panel */}
 
 
-            <div className=' flex flex-col justify-end h-screen absolute top-0 w-full'>
-                <div className='h-[30%] p-6 bg-white relative sm:h-[40%]'>
+            <div className=' flex flex-col justify-end h-screen absolute top-0 w-full  '>
+                <div className='h-[40%] p-6 bg-white relative sm:h-[40%]'>
 
 
                     {/* Close button */}
-                    <h5 ref={panelCloseRef} onClick={() => {
-                        setPanelOpen(false)
-                    }} className='absolute opacity-0 right-6 top-6 text-2xl cursor-pointer sm:opacity-100'>
+                    <h5 ref={panelCloseRef} 
+                    onClick={() =>  setPanelOpen(false)
+                    } className='absolute opacity-0 right-6 top-6 text-2xl cursor-pointer sm:opacity-100'>
                         
                         <i className="ri-arrow-down-wide-line"></i>
                     </h5>
@@ -260,11 +260,15 @@ const Home = () => {
                     </form>
 
                      {/* Button */}
-                    <button
-                        onClick={findTrip}
-                        className='bg-black text-white px-4 py-2 rounded-lg mt-3 w-full sm:py-1 sm:text-sm'>
-                        Find Trip
-                    </button>
+                        <button
+                            onClick={findTrip}
+                            disabled={!pickup || !destination} // Disable if either pickup or destination is empty
+                            className={`bg-black text-white px-4 py-2 rounded-lg mt-3 w-full sm:py-1 sm:text-sm 
+                               ${!pickup || !destination ? 'cursor-not-allowed' : ''}`} // Change styling if disabled
+                        >
+                            Find Trip
+                        </button>
+
                 </div>
 
                 

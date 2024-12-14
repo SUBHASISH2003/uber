@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (max-width: 640px) {
+    .line {
+        height: 3rem; /* Smaller height for the vertical line */
+    }
+}
