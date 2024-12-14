@@ -26,12 +26,13 @@ const Riding = () => {
 
             </div>
             <div className='h-1/2 p-4'>
+            <h3 className='text-2xl font-semibold mb-5'>Wow .. Finally Reached <span><i className="ri-roadster-fill"></i></span></h3>
+
                 <div className='flex items-center justify-between'>
                     <img className='h-12' src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg" alt="" />
                     <div className='text-right'>
-                        <h2 className='text-lg font-medium capitalize'>{ride?.captain.fullname.firstname}</h2>
-                        <h4 className='text-xl font-semibold -mt-1 -mb-1'>{ride?.captain.vehicle.plate}</h4>
-                        <p className='text-sm text-gray-600'>Maruti Suzuki Alto</p>
+                        <h2 className='text-lg font-medium mb-3 capitalize'>{ride?.captain.fullname.firstname}</h2>
+                        <h4 className='text-sm font-semibold -mt-1 -mb-1 text-gray-600'>{ride?.captain.vehicle.plate}</h4>
 
                     </div>
                 </div>
@@ -42,7 +43,6 @@ const Riding = () => {
                         <div className='flex items-center gap-5 p-3 border-b-2'>
                             <i className="text-lg ri-map-pin-2-fill"></i>
                             <div>
-                                <h3 className='text-lg font-medium'>562/11-A</h3>
                                 <p className='text-sm -mt-1 text-gray-600'>{ride?.destination}</p>
                             </div>
                         </div>
@@ -50,12 +50,11 @@ const Riding = () => {
                             <i className="ri-currency-line"></i>
                             <div>
                                 <h3 className='text-lg font-medium'>₹{ride?.fare} </h3>
-                                <p className='text-sm -mt-1 text-gray-600'>Cash Cash</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button className='w-full mt-5 bg-green-600 text-white font-semibold p-2 rounded-lg'>Make a Payment</button>
+                <button className='w-full mt-5 bg-gray-600 text-white font-semibold p-2 rounded-lg'>Please Pay in Cash</button>
             </div>
         </div>
     )
