@@ -200,7 +200,7 @@ const Home = () => {
 
     return (
         <div className='h-screen relative overflow-hidden'>
-            <div className='fixed p-6 top-0 z-10 flex items-center justify-between w-screen'>
+            <div className='fixed  p-6  z-10 flex items-center justify-between '>
                 <Link to='/user/logout' className=' h-10 w-10 bg-red-500  flex items-center justify-center rounded-full'>
                     <i className="text-lg font-medium ri-logout-box-r-line"></i>
                 </Link>
@@ -213,7 +213,7 @@ const Home = () => {
             {/* bottom panel */}
 
 
-            <div className=' flex flex-col justify-end h-screen absolute top-0 w-full  '>
+            <div className=' flex flex-col justify-end h-screen absolute top-0 w-full   '>
                 <div className='h-[40%] p-6 bg-white relative sm:h-[40%]'>
 
 
@@ -226,7 +226,7 @@ const Home = () => {
                     </h5>
 
                     {/* Panel Title */}
-                    <h4 className='text-2xl font-semibold sm:text-lg'>Find a trip</h4>
+                    <h4 className='text-2xl text-center font-semibold sm:text-lg mt-2'>Find a trip</h4>
 
                      {/* Form */}
                     <form className='relative py-3' onSubmit={(e) => {
