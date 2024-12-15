@@ -8,6 +8,9 @@ const Captainlogin = () => {
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
+  const [error, setError] = useState('') // State for error message
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+
 
   const { captain, setCaptain } = React.useContext(CaptainDataContext)
   const navigate = useNavigate()
@@ -21,6 +24,9 @@ const Captainlogin = () => {
       password
     }
 
+
+    try {
+
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`, captain)
 
     if (response.status === 200) {
@@ -31,6 +37,16 @@ const Captainlogin = () => {
       navigate('/captain-home')
 
     }
+  } catch (err) {
+    // Display "Invalid Email or Password" in the UI
+    if (err.response && err.response.status === 401) {
+      setError('Invalid Email or Password')
+    } else {
+      setError('Something went wrong. Please try again later.')
+    }
+     // Remove the error message after 2 seconds
+     setTimeout(() => setError(''), 2000)
+  }
 
     setEmail('')
     setPassword('')
@@ -43,7 +59,7 @@ const Captainlogin = () => {
         <form onSubmit={(e) => {
           submitHandler(e)
         }}>
-          <h3 className='text-lg font-medium mb-2'>What's your email</h3>
+          <h3 className='text-lg font-medium mb-2'>What's your email Captain</h3>
           <input
             required
             value={email}
@@ -55,7 +71,10 @@ const Captainlogin = () => {
             placeholder='email@example.com'
           />
 
-          <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
+          <h3 className='text-lg font-medium mb-2'>Enter your Password</h3>
+
+          
+          <div className="relative">
 
           <input
             className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
@@ -63,16 +82,30 @@ const Captainlogin = () => {
             onChange={(e) => {
               setPassword(e.target.value)
             }}
-            required type="password"
+            required type={showPassword ? 'text' : 'password'}
             placeholder='password'
           />
 
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-2 right-4 text-green-500"
+            >
+              <i className={showPassword ? "ri-eye-off-line" : "ri-eye-line"}></i>
+            </button>
+            </div>
+
+          {/* Display error message */}
+          {error && <p className=" text-red-500 mb-3 text-center">{error}</p>}
+
+
           <button
             className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
+            type='submit'
           >Login</button>
 
         </form>
-        <p className='text-center'>Join a fleet? <Link to='/captain-signup' className='text-blue-600'>Register as a Captain</Link></p>
+        <p className='text-center'>New Captain? <Link to='/captain-signup' className='text-blue-600'>Register as a Captain</Link></p>
       </div>
       <div>
         <Link

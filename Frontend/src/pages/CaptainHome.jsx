@@ -24,10 +24,12 @@ const CaptainHome = () => {
     const { captain } = useContext(CaptainDataContext)
 
     useEffect(() => {
+        if (!captain || !socket) return;
+
         socket.emit('join', {
             userId: captain._id,
             userType: 'captain'
-        })
+        });
         const updateLocation = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
@@ -44,11 +46,15 @@ const CaptainHome = () => {
         }
 
         const locationInterval = setInterval(updateLocation, 10000)
-        updateLocation()
+        updateLocation();
 
-        return () => clearInterval(locationInterval)
-    }, [])
+        return () => {
+            clearInterval(locationInterval);
+            socket.off('new-ride');
+        };
+    }, [captain, socket]);
 
+    
     socket.on('new-ride', (data) => {
 
         setRide(data)

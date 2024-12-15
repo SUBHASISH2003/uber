@@ -11,6 +11,8 @@ const UserSignup = () => {
   const [ firstName, setFirstName ] = useState('')
   const [ lastName, setLastName ] = useState('')
   const [ userData, setUserData ] = useState({})
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  
 
   const navigate = useNavigate()
 
@@ -96,15 +98,27 @@ const UserSignup = () => {
 
             <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
 
+
+            <div className="relative">
+
             <input
               className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value)
               }}
-              required type="password"
+              required type={showPassword ? 'text' : 'password'}
               placeholder='password'
             />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-2 right-4 text-green-500"
+            >
+              <i className={showPassword ? "ri-eye-off-line" : "ri-eye-line"}></i>
+            </button>
+            </div>
 
             <button
               className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'

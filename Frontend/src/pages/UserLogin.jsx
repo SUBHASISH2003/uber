@@ -8,6 +8,9 @@ const UserLogin = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ userData, setUserData ] = useState({})
+  const [error, setError] = useState('') // State for error message
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  
 
   const { user, setUser } = useContext(UserDataContext)
   const navigate = useNavigate()
@@ -22,6 +25,9 @@ const UserLogin = () => {
       password: password
     }
 
+    
+    try {
+
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData)
 
     if (response.status === 200) {
@@ -30,6 +36,17 @@ const UserLogin = () => {
       localStorage.setItem('token', data.token)
       navigate('/home')
     }
+  } catch (err) {
+    // Display "Invalid Email or Password" in the UI
+    if (err.response && err.response.status === 401) {
+      setError('Invalid Email or Password')
+    } else {
+      setError('Something went wrong. Please try again later.')
+    }
+     // Remove the error message after 2 seconds
+     setTimeout(() => setError(''), 2000)
+  }
+
 
 
     setEmail('')
@@ -58,18 +75,33 @@ const UserLogin = () => {
 
           <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
 
+
+          <div className="relative">
           <input
             className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
             value={password}
             onChange={(e) => {
               setPassword(e.target.value)
             }}
-            required type="password"
+            required type={showPassword ? 'text' : 'password'}
             placeholder='password'
           />
+          <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-2 right-4 text-green-500"
+            >
+              <i className={showPassword ? "ri-eye-off-line" : "ri-eye-line"}></i>
+            </button>
+            </div>
+
+
+           {/* Display error message */}
+           {error && <p className=" text-red-500 mb-3 text-center">{error}</p>}
 
           <button
             className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
+            type='submit'
           >Login</button>
 
         </form>

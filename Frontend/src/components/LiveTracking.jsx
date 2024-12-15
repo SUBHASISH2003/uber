@@ -62,6 +62,9 @@ const LiveTracking = () => {
             }
         );
 
+         // Fallback to stop loading after 3 seconds
+         const timeoutId = setTimeout(() => setLoading(false), 3000);
+
         return () => navigator.geolocation.clearWatch(watchId);
     }, []);
 
