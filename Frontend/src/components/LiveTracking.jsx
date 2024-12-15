@@ -25,21 +25,7 @@ const LiveTracking = () => {
             });
         });
 
-    // useEffect(() => {
-    //     navigator.geolocation.getCurrentPosition(
-    //         (position) => {
-    //             const { latitude, longitude } = position.coords;
-    //             setCurrentPosition({
-    //                 lat: latitude,
-    //                 lng: longitude
-    //             });
-    //             setLoading(false); // Location fetched
-    //         },
-    //         (error) => {
-    //             console.error('Error fetching location:', error);
-    //             setLoading(false); // Stop loading even if there's an error
-    //         }
-    //     );
+ 
 
         const watchId = navigator.geolocation.watchPosition((position) => {
             const { latitude, longitude } = position.coords;
@@ -49,22 +35,7 @@ const LiveTracking = () => {
             });
         });
 
-        // const watchId = navigator.geolocation.watchPosition(
-        //     (position) => {
-        //         const { latitude, longitude } = position.coords;
-        //         setCurrentPosition({
-        //             lat: latitude,
-        //             lng: longitude
-        //         });
-        //     },
-        //     (error) => {
-        //         console.error('Error watching location:', error);
-        //     }
-        // );
-
-         // Fallback to stop loading after 3 seconds
-        //  const timeoutId = setTimeout(() => setLoading(false), 3000);
-
+      
         return () => navigator.geolocation.clearWatch(watchId);
     }, []);
 
@@ -89,12 +60,8 @@ const LiveTracking = () => {
 
     return (
 
-        // <div style={{ width: '100%', height: '100%' }}>
-        // {loading ? (
-        //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-        //         <p>Loading your location...</p>
-        //     </div>
-        // ) : (
+        <div style={{ width: '100%', height: '100%' }}>
+      
              <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
              <GoogleMap
                 mapContainerStyle={containerStyle}
@@ -103,9 +70,8 @@ const LiveTracking = () => {
              >
                 <Marker position={currentPosition} />
             </GoogleMap>
-        </LoadScript>
-    // )
-    // </div>
+            </LoadScript>
+        </div>
     )
 }
 
